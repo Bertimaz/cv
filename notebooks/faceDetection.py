@@ -68,7 +68,7 @@ def alinha_face(imagem,tamanho=None, return_face=True):
         
         # Recorta a imagem alinhada
         cropped = rotated[y:y+h, x:x+w]
-        faces.append({'image':cropped, 'coordinates':{'x':x,'y':y,'w':w,'h':h}})
+        faces.append({'image':cropped, 'coordinates':{'x':x,'y':y,'w':w,'h':h},'face':det})
     # Retorna imagem caso requisitado
     if return_face:
         return faces

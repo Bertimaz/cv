@@ -7,7 +7,7 @@ import numpy as np
 import time
 from threading import Timer
 
-def alinha_face(imagem,tamanho=None, return_face=True):
+def alinha_face(imagem,dets,tamanho=None, return_face=True):
     """
     Alinha a face de uma imagem. Só funciona se tiver apenas 1 face
     Argumentos:
@@ -25,14 +25,14 @@ def alinha_face(imagem,tamanho=None, return_face=True):
     faces=[]
     # Carrega o classificador de marcos faciais
     classificador_68_path = r"C:\Users\alber\Documents\Projetos - Dados\computer_vision\Notebooks\files\classificadores\shape_predictor_68_face_landmarks.dat"
-    detector_face_dlib = dlib.get_frontal_face_detector()
+    # detector_face_dlib = dlib.get_frontal_face_detector()
     classificador_dlib_68 = dlib.shape_predictor(classificador_68_path)
 
-    ## print(type(imagem))
-    # Salva o tamanho da imagem
+    # ## print(type(imagem))
+    # # Salva o tamanho da imagem
     height, width = imagem.shape[:2]
-    # Detecta rostos na imagem
-    dets = detector_face_dlib(imagem, 1)
+    # # Detecta rostos na imagem
+    # dets = detector_face_dlib(imagem, 1)
 
    
     # Para C
@@ -65,7 +65,7 @@ def alinha_face(imagem,tamanho=None, return_face=True):
         
         # Recorta a imagem alinhada
         cropped = rotated[y:y+h, x:x+w]
-        faces.append({'image':cropped, 'coordinates':{'x':x,'y':y,'w':w,'h':h}})
+        faces.append({'image':cropped, 'coordinates':{'x':x,'y':y,'w':w,'h':h},'face':det})
     # Retorna imagem caso requisitado
     if return_face:
         return faces
